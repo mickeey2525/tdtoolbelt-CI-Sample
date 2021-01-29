@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo "This is test"
 CURRENT_BRANCH=`git rev-parse --abbrev-ref @`
 
 if [ $CURRENT_BRANCH = "main" ]; then
