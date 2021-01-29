@@ -10,7 +10,7 @@ jobs:
     steps:
       - run:
           name: Push project
-          command: td -e $TD_API_SERVER -k $TD_API_KEY wf push mydag
+          command: cd mydag && td -e $TD_API_SERVER -k $TD_API_KEY wf push mydag
 
 workflows:
   version: 2
