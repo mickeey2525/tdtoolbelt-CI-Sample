@@ -8,6 +8,7 @@ jobs:
   digdag:
     executor: my_executor
     steps:
+      - checkout
       - run:
           name: Push project
           command: ./push.sh
