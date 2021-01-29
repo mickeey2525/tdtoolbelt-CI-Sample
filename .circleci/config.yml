@@ -1,0 +1,14 @@
+version: 2.1
+executors:
+  my_executor:
+    docker:
+      - image: mikio2225/td-toolbelt:latest
+
+jobs:
+  digdag:
+    executor: my_executor
+    steps:
+      - checkout
+      - run:
+          name: Push project
+          command: td -e $TD_API_SERVER -k $TD_API_KEY wf push mydag
