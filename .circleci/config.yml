@@ -13,8 +13,7 @@ jobs:
           name: Setup
           command: |
               gem install td
-              yes | td -e https://api.treasuredata.com -k dummy wf
-              exit 0
+              yes | td -e https://api.treasuredata.com -k dummy wf || true
       - run:
           name: Check config
           command: cd workflows && td wf check
