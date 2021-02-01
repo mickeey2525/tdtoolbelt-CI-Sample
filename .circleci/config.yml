@@ -14,6 +14,7 @@ jobs:
           command: |
               gem install td
               yes | td -e https://api.treasuredata.com -k dummy wf
+              exit 0
       - run:
           name: Check config
           command: cd workflows && td wf check
