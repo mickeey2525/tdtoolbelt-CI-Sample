@@ -2,17 +2,25 @@ version: 2.1
 executors:
   my_executor:
     docker:
-      - image: mikio2225/td-toolbelt:latest
-
+      - image: ruby:2.7.2-buster
+ 
 jobs:
   digdag:
     executor: my_executor
     steps:
       - checkout
       - run:
+          name: Setup
+          command: |
+              gem install td
+              yes | td -e https://api.treasuredata.com -k dummy wf
+      - run:
+          name: Check config
+          command: cd workflows && td wf check
+      - run:
           name: Push project
-          command: ./push.sh
-
+          command: td -e https://api.treasuredata.com -k $TD_API_KEY wf push $WF_PROJECT -r `date -u +"%Y-%m-%dT%H:%M:%SZ"`-`git rev-parse HEAD`
+ 
 workflows:
   version: 2
   build-n-deploy:
